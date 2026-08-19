@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReelSpark — your first 3 seconds, solved</title>
+<meta name="description" content="Pick your niche and your goal. Get scroll-stopping hooks, captions and hashtags for CapCut, Reels and TikTok — ready to paste and post.">
+<meta property="og:title" content="ReelSpark — your first 3 seconds, solved">
+<meta property="og:description" content="Scroll-stopping hooks, captions and hashtags for small business Reels and TikToks, generated in seconds.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://reelspark.app">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ReelSpark — your first 3 seconds, solved">
+<meta name="twitter:description" content="Scroll-stopping hooks, captions and hashtags for small business Reels and TikToks, generated in seconds.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230E1613'/%3E%3Ccircle cx='50' cy='32' r='7' fill='%23E8A33D'/%3E%3Ctext x='50' y='76' font-family='Arial, sans-serif' font-weight='700' font-size='44' fill='%23F4F1EA' text-anchor='middle'%3ER%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0E1613;
+    --surface: #172420;
+    --surface-2: #1D2E28;
+    --frame-edge: #070B09;
+    --text: #F4F1EA;
+    --text-muted: #9AA79E;
+    --amber: #E8A33D;
+    --amber-dim: #6B531F;
+    --mint: #6FB98F;
+    --border: #2A3B34;
+    --radius: 10px;
+    --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.5;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+    html{ scroll-behavior:auto; }
+  }
+
+  a{ color:inherit; }
+  button, input, select{ font-family:inherit; font-size:inherit; }
+  :focus-visible{ outline:2px solid var(--amber); outline-offset:2px; }
+
+  .rec-bar{
+    background:var(--frame-edge);
+    color:var(--text-muted);
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.06em;
+    text-align:center;
+    padding:7px 12px;
+  }
+  .rec-dot{
+    display:inline-block; width:7px; height:7px; border-radius:50%;
+    background:var(--amber); margin-right:7px; vertical-align:middle;
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:0.35;} }
+
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 6vw;
+    max-width:1100px; margin:0 auto;
+  }
+  .wordmark{
+    font-family:var(--font-display); font-weight:700; font-size:1.3rem;
+    letter-spacing:0.02em; text-decoration:none;
+  }
+  .wordmark span{ color:var(--amber); }
+  nav a{
+    text-decoration:none; color:var(--text-muted); font-size:0.92rem;
+    margin-left:24px;
+  }
+  nav a:hover{ color:var(--text); }
+
+  .hero{
+    max-width:1100px; margin:0 auto; padding:24px 6vw 10px;
+    text-align:center;
+  }
+  .hero h1{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(2rem, 5vw, 3.2rem);
+    line-height:1.08; margin:0 0 16px;
+    letter-spacing:-0.01em;
+  }
+  .hero p{
+    color:var(--text-muted); font-size:1.05rem; max-width:520px;
+    margin:0 auto 36px;
+  }
+
+  .console{
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--radius); max-width:900px; margin:0 auto 64px;
+    text-align:left; overflow:hidden;
+  }
+  .console-top{
+    display:flex; align-items:center; gap:10px;
+    padding:12px 18px; border-bottom:1px solid var(--border);
+    font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);
+  }
+  .console-top .dots{ display:flex; gap:6px; }
+  .console-top .dots span{ width:8px; height:8px; border-radius:50%; background:var(--border); }
+  .console-body{ padding:22px; }
+
+  .controls{
+    display:grid; grid-template-columns: 1fr 1fr auto; gap:12px;
+    margin-bottom:20px;
+  }
+  @media (max-width:640px){ .controls{ grid-template-columns:1fr; } }
+
+  .field label{
+    display:block; font-size:0.75rem; color:var(--text-muted);
+    margin-bottom:6px; text-transform:uppercase; letter-spacing:0.05em;
+  }
+  .field input, .field select{
+    width:100%; background:var(--bg); color:var(--text);
+    border:1px solid var(--border); border-radius:6px;
+    padding:10px 12px; font-size:0.95rem;
+  }
+  .field input::placeholder{ color:#5B6862; }
+
+  .generate-btn{
+    align-self:end;
+    background:var(--amber); color:#1A1305; border:none;
+    font-weight:600; font-family:var(--font-display);
+    letter-spacing:0.03em; border-radius:6px;
+    padding:11px 22px; cursor:pointer;
+    display:flex; align-items:center; gap:8px; white-space:nowrap;
+  }
+  .generate-btn:hover{ filter:brightness(1.08); }
+  .generate-btn .rec-icon{
+    width:10px; height:10px; border-radius:50%; background:#1A1305;
+  }
+
+  .counter{
+    font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted);
+    margin-bottom:18px;
+  }
+  .counter b{ color:var(--amber); font-weight:500; }
+
+  .empty-state{
+    text-align:center; padding:40px 20px; color:var(--text-muted);
+    font-size:0.92rem; border:1px dashed var(--border); border-radius:8px;
+  }
+
+  .paywall{
+    text-align:center; padding:30px 20px; border-radius:8px;
+    background:var(--surface-2); border:1px solid var(--border);
+  }
+  .paywall h3{ font-family:var(--font-display); margin:0 0 8px; }
+  .paywall p{ color:var(--text-muted); margin:0 0 18px; font-size:0.9rem; }
+  .paywall .row{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--amber); color:#1A1305; border:none; font-weight:600;
+    border-radius:6px; padding:10px 20px; cursor:pointer; font-family:var(--font-display);
+  }
+  .btn-ghost{
+    background:transparent; color:var(--text-muted); border:1px solid var(--border);
+    border-radius:6px; padding:10px 20px; cursor:pointer;
+  }
+  .btn-ghost:hover{ color:var(--text); }
+
+  .filmstrip{
+    display:flex; gap:16px; overflow-x:auto; padding:18px 4px 8px;
+    scroll-snap-type:x proximity;
+  }
+  .frame-card{
+    position:relative;
+    flex:0 0 250px; scroll-snap-align:start;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:4px;
+    padding:22px 16px 16px;
+  }
+  .frame-card::before, .frame-card::after{
+    content:''; position:absolute; left:0; right:0; height:12px;
+    background-image: radial-gradient(circle, var(--bg) 2.6px, transparent 3px);
+    background-size:14px 12px; background-position:6px center;
+  }
+  .frame-card::before{ top:0; }
+  .frame-card::after{ bottom:0; }
+
+  .timecode{
+    font-family:var(--font-mono); font-size:0.7rem; color:var(--amber);
+    margin-bottom:10px; display:block;
+  }
+  .goal-tag{
+    display:inline-block; font-family:var(--font-mono); font-size:0.65rem;
+    color:var(--mint); border:1px solid var(--mint); border-radius:3px;
+    padding:1px 6px; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.04em;
+  }
+  .frame-card .hook{
+    font-family:var(--font-display); font-size:1.05rem; font-weight:600;
+    line-height:1.3; margin:0 0 12px;
+  }
+  .frame-card .caption{
+    font-size:0.85rem; color:var(--text-muted); margin:0 0 14px;
+  }
+  .hashtags{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+  .hashtags span{
+    font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted);
+    background:var(--bg); border:1px solid var(--border); border-radius:3px;
+    padding:2px 6px;
+  }
+  .copy-btn{
+    width:100%; background:transparent; border:1px solid var(--border);
+    color:var(--text); border-radius:5px; padding:7px; font-size:0.8rem;
+    cursor:pointer;
+  }
+  .copy-btn:hover{ border-color:var(--amber); }
+  .copy-btn.copied{ color:var(--mint); border-color:var(--mint); }
+
+  section.how, section.pricing{
+    max-width:900px; margin:0 auto; padding:50px 6vw;
+  }
+  .section-label{
+    font-family:var(--font-mono); font-size:0.75rem; color:var(--amber);
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px;
+  }
+  .how h2, .pricing h2{
+    font-family:var(--font-display); font-size:1.8rem; margin:0 0 30px;
+  }
+  .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  @media (max-width:700px){ .steps{ grid-template-columns:1fr; } }
+  .step .num{ font-family:var(--font-mono); color:var(--amber); font-size:0.85rem; }
+  .step p{ color:var(--text-muted); font-size:0.92rem; margin-top:6px; }
+
+  .plans{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:700px){ .plans{ grid-template-columns:1fr; } }
+  .plan{
+    background:var(--surface); border:1px solid var(--border); border-radius:8px;
+    padding:22px;
+  }
+  .plan.featured{ border-color:var(--amber); }
+  .plan .price{ font-family:var(--font-display); font-size:1.6rem; margin:10px 0; }
+  .plan .price span{ font-size:0.8rem; color:var(--text-muted); font-family:var(--font-body); }
+  .plan ul{ padding-left:18px; color:var(--text-muted); font-size:0.88rem; }
+  .plan .tier-name{ font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; }
+  .plan-cta{
+    display:block; text-align:center; text-decoration:none;
+    margin-top:16px;
+  }
+  .plan-cta:hover{ filter:brightness(1.08); }
+
+  footer{
+    text-align:center; padding:30px 20px 50px; color:#5B6862;
+    font-size:0.78rem; font-family:var(--font-mono);
+  }
+  footer .legal-links{ margin-top:8px; }
+  footer .legal-links a, footer .legal-links button{
+    background:none; border:none; color:#5B6862; font-family:var(--font-mono);
+    font-size:0.78rem; text-decoration:underline; cursor:pointer; padding:0; margin:0 8px;
+  }
+  footer .legal-links a:hover, footer .legal-links button:hover{ color:var(--text-muted); }
+
+  .already-pro{
+    text-align:center; margin-top:22px; color:var(--text-muted); font-size:0.85rem;
+  }
+  .link-btn{
+    background:none; border:none; color:var(--amber); text-decoration:underline;
+    cursor:pointer; font-size:0.85rem; padding:0; font-family:inherit;
+  }
+  .pro-badge{
+    display:inline-block; font-family:var(--font-mono); font-size:0.7rem;
+    color:var(--bg); background:var(--mint); border-radius:3px; padding:2px 8px;
+    margin-left:10px; vertical-align:middle;
+  }
+
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(7,11,9,0.8);
+    display:flex; align-items:center; justify-content:center;
+    padding:20px; z-index:100;
+  }
+  .modal-box{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    max-width:440px; width:100%; padding:26px; max-height:80vh; overflow-y:auto;
+  }
+  .modal-box h3{ font-family:var(--font-display); margin:0 0 14px; }
+  .modal-box p{ color:var(--text-muted); font-size:0.88rem; margin:0 0 14px; }
+  .modal-box input{
+    width:100%; background:var(--bg); color:var(--text); border:1px solid var(--border);
+    border-radius:6px; padding:10px 12px; margin-bottom:12px; font-size:0.95rem;
+  }
+  .modal-box .row{ display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap; }
+  .modal-msg{ font-size:0.85rem; margin-top:-4px; margin-bottom:12px; }
+  .modal-msg.error{ color:#E07856; }
+  .modal-msg.success{ color:var(--mint); }
+</style>
+</head>
+<body>
+
+  <div class="rec-bar"><span class="rec-dot"></span>LIVE — subscriptions are processed securely via Gumroad</div>
+
+  <header>
+    <a href="#" class="wordmark">Reel<span>Spark</span></a>
+    <nav>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Your first 3 seconds,<br>solved.</h1>
+    <p>Pick your niche and your goal. Get scroll-stopping hooks, captions and hashtags — ready to paste into CapCut and post.</p>
+
+    <div class="console">
+      <div class="console-top">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <span>generator.live</span>
+      </div>
+      <div class="console-body">
+        <div class="controls">
+          <div class="field">
+            <label for="niche">Your business type</label>
+            <input id="niche" type="text" placeholder="e.g. bakery, nail salon, plumber" value="bakery">
+          </div>
+          <div class="field">
+            <label for="goal">Goal for this post</label>
+            <select id="goal">
+              <option value="sell">Sell something</option>
+              <option value="educate">Educate</option>
+              <option value="entertain">Entertain</option>
+              <option value="trust">Build trust</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>&nbsp;</label>
+            <button class="generate-btn" id="generateBtn"><span class="rec-icon"></span>Generate</button>
+          </div>
+        </div>
+
+        <div class="counter" id="counter"><b>0</b> of 3 free generations used this month</div>
+
+        <div id="output">
+          <div class="empty-state">No frames yet — set your niche and goal, then hit Generate.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="section-label">00:00 — 00:15</div>
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <p>Tell it your business type and what this post needs to do — sell, educate, entertain, or build trust.</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <p>Get six ready-made hooks with matching captions and hashtags, styled like frames on a timeline.</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <p>Copy the one that fits, paste it into CapCut or your caption box, and post.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="section-label">Pricing</div>
+    <h2>Less than one coffee a month.</h2>
+    <div class="plans">
+      <div class="plan">
+        <div class="tier-name">Free</div>
+        <div class="price">R0</div>
+        <ul>
+          <li>3 generations / month</li>
+          <li>No saving</li>
+        </ul>
+      </div>
+      <div class="plan featured">
+        <div class="tier-name">Pro</div>
+        <div class="price">R89 <span>/ month</span></div>
+        <ul>
+          <li>Unlimited generations</li>
+          <li>Save your favourites</li>
+          <li>New hook formulas monthly</li>
+        </ul>
+        <a class="btn-primary plan-cta" href="https://amogelang87.gumroad.com/l/nvnytg?wanted=true" target="_blank" rel="noopener">Subscribe</a>
+      </div>
+      <div class="plan">
+        <div class="tier-name">Annual</div>
+        <div class="price">R799 <span>/ year</span></div>
+        <ul>
+          <li>Everything in Pro</li>
+          <li>Works out to R66 / month</li>
+        </ul>
+        <a class="btn-ghost plan-cta" href="https://amogelang87.gumroad.com/l/nvnytg?wanted=true" target="_blank" rel="noopener">Subscribe</a>
+      </div>
+    </div>
+    <p class="already-pro">Already subscribed? <button type="button" id="enterKeyBtn" class="link-btn">Enter your license key</button> to unlock Pro on this device.</p>
+  </section>
+
+  <footer>
+    Subscriptions are processed securely through Gumroad. Generations aren't saved between visits yet.
+    <div class="legal-links">
+      <button type="button" id="privacyLink">Privacy Policy</button>·
+      <button type="button" id="termsLink">Terms &amp; Refunds</button>·
+      <a href="mailto:support@reelspark.app">support@reelspark.app</a> ·
+      <a href="mailto:amogelangskhosana2006@gmail.com">amogelangskhosana2006@gmail.com</a>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="legalModal" style="display:none;">
+    <div class="modal-box">
+      <h3 id="legalTitle">Privacy Policy</h3>
+      <div id="legalBody"></div>
+      <div class="row"><button class="btn-ghost" id="legalClose">Close</button></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="licenseModal" style="display:none;">
+    <div class="modal-box">
+      <h3>Enter your license key</h3>
+      <p>Find this in your Gumroad purchase receipt email after subscribing.</p>
+      <input type="text" id="licenseInput" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX">
+      <div class="modal-msg" id="licenseMsg"></div>
+      <div class="row">
+        <button class="btn-ghost" id="licenseCancel">Cancel</button>
+        <button class="btn-primary" id="licenseVerify">Verify</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  const HOOKS = {
+    sell: [
+      "If you run a {niche}, stop scrolling for 3 seconds.",
+      "This is the {niche} hack nobody's telling you about.",
+      "3 things every {niche} owner needs to stop doing.",
+      "The mistake that's quietly killing your {niche} sales.",
+      "I wish someone told me this before I opened my {niche}.",
+      "POV: you just found the {niche} tip that changes everything.",
+      "Here's why your {niche} isn't getting customers.",
+      "Watch this before you post another {niche} ad."
+    ],
+    educate: [
+      "Here's what nobody tells you about running a {niche}.",
+      "3 things I learned the hard way in {niche}.",
+      "Save this if you're serious about your {niche}.",
+      "The {niche} lesson that took me years to figure out.",
+      "Quick lesson for every {niche} owner watching this.",
+      "This changed how I think about {niche} completely.",
+      "A 30-second crash course for {niche} owners."
+    ],
+    entertain: [
+      "Tell me you run a {niche} without telling me.",
+      "Rating my {niche} mistakes so far this year.",
+      "A day in the life of running a {niche} — it's chaos.",
+      "Things customers say to {niche} owners that make no sense.",
+      "POV: your {niche} on a Monday morning.",
+      "Reasons running a {niche} ages you 5 years."
+    ],
+    trust: [
+      "Here's exactly how we do things at our {niche}.",
+      "Behind the scenes of running a {niche} — the real version.",
+      "Why I started this {niche} in the first place.",
+      "The truth about running a {niche} we don't post enough.",
+      "Meet the person behind your favourite {niche}.",
+      "What running a {niche} actually looks like this week."
+    ]
+  };
+
+  const CAPTIONS = {
+    sell: [
+      "Ready to stop guessing? Link in bio to get started today.",
+      "DM us \"START\" and we'll sort you out.",
+      "This offer won't sit here forever — link in bio."
+    ],
+    educate: [
+      "Save this for later and follow for more {niche} tips.",
+      "Follow along — we post one lesson like this every week.",
+      "Bookmark this before you forget it (you will)."
+    ],
+    entertain: [
+      "Tag a fellow {niche} owner who gets it.",
+      "Send this to someone who needs a laugh today.",
+      "If this is too real, we're sorry, not sorry."
+    ],
+    trust: [
+      "This is why we do what we do. Follow along for more.",
+      "Real people, real {niche}, no filter.",
+      "Thanks for being here for the honest version."
+    ]
+  };
+
+  const BROAD_TAGS = ["#smallbusinesssa","#supportlocal","#entrepreneurlife","#smallbusinessowner","#southafricanbusiness"];
+  const GOAL_LABEL = { sell:"Sell", educate:"Educate", entertain:"Entertain", trust:"Build trust" };
+
+  const FREE_LIMIT = 3;
+  let generateCount = 0;
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  function slugify(str){
+    return str.trim().toLowerCase().replace(/[^a-z0-9]+/g,'');
+  }
+
+  function buildHashtags(niche){
+    const slug = slugify(niche) || "smallbiz";
+    const picked = shuffle(BROAD_TAGS).slice(0,3);
+    return [`#${slug}business`, `#${slug}tips`, ...picked];
+  }
+
+  function timecode(n){
+    const secs = n * 3;
+    const mm = String(Math.floor(secs/60)).padStart(2,'0');
+    const ss = String(secs%60).padStart(2,'0');
+    return `00:${mm}:${ss}`;
+  }
+
+  function render(niche, goal){
+    const hooks = shuffle(HOOKS[goal]).slice(0,6);
+    const captions = shuffle(CAPTIONS[goal]);
+    const output = document.getElementById('output');
+    output.innerHTML = '';
+
+    const strip = document.createElement('div');
+    strip.className = 'filmstrip';
+
+    hooks.forEach((hookTpl, i)=>{
+      const hook = hookTpl.replaceAll('{niche}', niche);
+      const captionTpl = captions[i % captions.length];
+      const caption = captionTpl.replaceAll('{niche}', niche);
+      const tags = buildHashtags(niche);
+
+      const card = document.createElement('div');
+      card.className = 'frame-card';
+      card.innerHTML = `
+        <span class="timecode">${timecode(i)}</span>
+        <span class="goal-tag">${GOAL_LABEL[goal]}</span>
+        <p class="hook">${hook}</p>
+        <p class="caption">${caption}</p>
+        <div class="hashtags">${tags.map(t=>`<span>${t}</span>`).join('')}</div>
+        <button class="copy-btn">Copy</button>
+      `;
+      const btn = card.querySelector('.copy-btn');
+      btn.addEventListener('click', ()=>{
+        const text = `${hook}\n\n${caption}\n\n${tags.join(' ')}`;
+        navigator.clipboard.writeText(text).then(()=>{
+          btn.textContent = 'Copied';
+          btn.classList.add('copied');
+          setTimeout(()=>{ btn.textContent='Copy'; btn.classList.remove('copied'); }, 1500);
+        });
+      });
+      strip.appendChild(card);
+    });
+
+    output.appendChild(strip);
+  }
+
+  function showPaywall(){
+    const output = document.getElementById('output');
+    output.innerHTML = `
+      <div class="paywall">
+        <h3>You've used your free generations</h3>
+        <p>Upgrade to Pro for unlimited hooks and monthly new formulas.</p>
+        <div class="row">
+          <button class="btn-primary" id="upgradeBtn">Upgrade — R89/month</button>
+        </div>
+      </div>
+    `;
+    document.getElementById('upgradeBtn').addEventListener('click', ()=>{
+      window.open('https://amogelang87.gumroad.com/l/nvnytg?wanted=true', '_blank', 'noopener');
+    });
+  }
+
+  function isPro(){
+    return localStorage.getItem('reelspark_pro') === 'true';
+  }
+
+  function updateCounter(){
+    const counterEl = document.getElementById('counter');
+    if(isPro()){
+      counterEl.innerHTML = `Unlimited generations <span class="pro-badge">PRO</span>`;
+      return;
+    }
+    counterEl.innerHTML =
+      `<b>${Math.min(generateCount, FREE_LIMIT)}</b> of ${FREE_LIMIT} free generations used this month`;
+  }
+
+  document.getElementById('generateBtn').addEventListener('click', ()=>{
+    if(!isPro() && generateCount >= FREE_LIMIT){
+      showPaywall();
+      return;
+    }
+    const niche = (document.getElementById('niche').value || 'small business').trim();
+    const goal = document.getElementById('goal').value;
+    render(niche, goal);
+    generateCount++;
+    updateCounter();
+  });
+
+  // --- License key unlock (Gumroad) ---
+  // Fill in your product_id from Gumroad: Product > Settings > enable
+  // "Generate a unique license key per sale" > copy the product_id shown there.
+  const GUMROAD_PRODUCT_ID = 'REPLACE_WITH_YOUR_GUMROAD_PRODUCT_ID';
+
+  const licenseModal = document.getElementById('licenseModal');
+  const licenseMsg = document.getElementById('licenseMsg');
+
+  document.getElementById('enterKeyBtn').addEventListener('click', ()=>{
+    licenseMsg.textContent = '';
+    document.getElementById('licenseInput').value = '';
+    licenseModal.style.display = 'flex';
+  });
+  document.getElementById('licenseCancel').addEventListener('click', ()=>{
+    licenseModal.style.display = 'none';
+  });
+
+  document.getElementById('licenseVerify').addEventListener('click', async ()=>{
+    const key = document.getElementById('licenseInput').value.trim();
+    if(!key){
+      licenseMsg.textContent = 'Enter your license key first.';
+      licenseMsg.className = 'modal-msg error';
+      return;
+    }
+    if(GUMROAD_PRODUCT_ID === 'REPLACE_WITH_YOUR_GUMROAD_PRODUCT_ID'){
+      licenseMsg.textContent = 'License verification isn\'t configured yet — contact support@reelspark.app.';
+      licenseMsg.className = 'modal-msg error';
+      return;
+    }
+    licenseMsg.textContent = 'Checking...';
+    licenseMsg.className = 'modal-msg';
+    try{
+      const body = new URLSearchParams();
+      body.append('product_id', GUMROAD_PRODUCT_ID);
+      body.append('license_key', key);
+      const res = await fetch('https://api.gumroad.com/v2/licenses/verify', {
+        method: 'POST', body
+      });
+      const data = await res.json();
+      if(data.success && !data.purchase?.refunded && !data.purchase?.chargebacked){
+        localStorage.setItem('reelspark_pro', 'true');
+        localStorage.setItem('reelspark_license_key', key);
+        licenseMsg.textContent = 'Unlocked! Closing...';
+        licenseMsg.className = 'modal-msg success';
+        updateCounter();
+        setTimeout(()=>{ licenseModal.style.display = 'none'; }, 900);
+      } else {
+        licenseMsg.textContent = 'That key didn\'t verify. Check it and try again, or email support@reelspark.app.';
+        licenseMsg.className = 'modal-msg error';
+      }
+    } catch(err){
+      licenseMsg.textContent = 'Couldn\'t reach the verification service. Try again in a moment.';
+      licenseMsg.className = 'modal-msg error';
+    }
+  });
+
+  // --- Legal modal ---
+  const LEGAL = {
+    privacy: {
+      title: 'Privacy Policy',
+      body: `<p>ReelSpark collects only what's needed to run the service: your email and payment status via Gumroad (our payment processor — we never see or store your card details), and locally on your device, a count of free generations used and your Pro unlock status.</p>
+             <p>We don't sell your data. Gumroad's own privacy policy governs the checkout process. For any data request or deletion, email support@reelspark.app.</p>`
+    },
+    terms: {
+      title: 'Terms & Refunds',
+      body: `<p>ReelSpark provides AI-assisted hook, caption and hashtag suggestions for short-form video content. Suggestions are starting points — review before posting.</p>
+             <p>Pro is billed monthly or annually via Gumroad and can be cancelled anytime from your Gumroad account. Refund requests within 7 days of purchase are handled case-by-case — email support@reelspark.app.</p>`
+    }
+  };
+  function openLegal(key){
+    document.getElementById('legalTitle').textContent = LEGAL[key].title;
+    document.getElementById('legalBody').innerHTML = LEGAL[key].body;
+    document.getElementById('legalModal').style.display = 'flex';
+  }
+  document.getElementById('privacyLink').addEventListener('click', ()=>openLegal('privacy'));
+  document.getElementById('termsLink').addEventListener('click', ()=>openLegal('terms'));
+  document.getElementById('legalClose').addEventListener('click', ()=>{
+    document.getElementById('legalModal').style.display = 'none';
+  });
+
+  updateCounter();
+</script>
+
+</body>
+</html>
